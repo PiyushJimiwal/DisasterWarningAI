@@ -61,10 +61,8 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Use PORT from environment, default to 3000 for development
-  // When running behind the Flask proxy, this will be 3000
-  // When running standalone, use PORT env var (5000 for production)
-  const port = parseInt(process.env.NODE_PORT || process.env.PORT || '3000', 10);
+  // Use PORT from environment, default to 5000
+  const port = parseInt(process.env.PORT || '5000', 10);
   server.listen({
     port,
     host: "0.0.0.0",
