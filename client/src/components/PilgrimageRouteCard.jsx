@@ -16,7 +16,7 @@ export default function PilgrimageRouteCard({ route }) {
   const statusConfig = getStatusConfig();
 
   return (
-    <Card className="min-w-[260px] hover-elevate" data-testid={`card-route-${route.id}`}>
+    <Card className="min-w-[260px] hover-elevate bg-slate-50/50 dark:bg-slate-950/20" data-testid={`card-route-${route.id}`}>
       <CardHeader className="flex flex-row items-start justify-between gap-2 space-y-0 pb-3">
         <div className="flex items-start gap-2 flex-1 min-w-0">
           <MapPin className="w-5 h-5 mt-0.5 text-blue-600 flex-shrink-0" />

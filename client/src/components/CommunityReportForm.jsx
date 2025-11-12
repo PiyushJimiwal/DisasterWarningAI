@@ -36,7 +36,7 @@ export default function CommunityReportForm() {
   };
 
   return (
-    <Card data-testid="card-community-report">
+    <Card className="bg-gradient-to-br from-blue-50/50 to-slate-50/50 dark:from-blue-950/20 dark:to-slate-950/20" data-testid="card-community-report">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-lg font-bold">
           <AlertCircle className="w-5 h-5 text-blue-600" />

@@ -162,7 +162,7 @@ export default function Dashboard() {
           </TabsList>
 
           <TabsContent value="dashboard" className="space-y-5">
-            <Card className="border-t-4 border-t-blue-600">
+            <Card className="border-t-4 border-t-blue-600 bg-gradient-to-br from-blue-50/50 to-slate-50/50 dark:from-blue-950/20 dark:to-slate-950/20">
               <CardHeader className="pb-3">
                 <CardTitle className="text-xl font-bold text-foreground">Current Risk Assessment</CardTitle>
                 <p className="text-sm text-muted-foreground">
@@ -216,7 +216,7 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="routes" className="space-y-5">
-            <Card>
+            <Card className="bg-gradient-to-br from-blue-50/50 to-slate-50/50 dark:from-blue-950/20 dark:to-slate-950/20">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg font-bold">
                   <MapPin className="w-5 h-5 text-blue-600" />
@@ -252,7 +252,7 @@ export default function Dashboard() {
             <div className="grid gap-5 lg:grid-cols-2">
               <CommunityReportForm />
               
-              <Card>
+              <Card className="bg-gradient-to-br from-slate-50/50 to-blue-50/50 dark:from-slate-950/20 dark:to-blue-950/20">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg font-bold">Recent Community Reports</CardTitle>
                   <p className="text-sm text-muted-foreground">

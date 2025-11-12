@@ -23,10 +23,10 @@ export default function DistrictCard({ district }) {
 
   const getBorderColor = () => {
     switch (district.riskLevel) {
-      case 'critical': return 'border-l-4 border-l-red-600';
-      case 'high': return 'border-l-4 border-l-amber-500';
-      case 'medium': return 'border-l-4 border-l-amber-400';
-      default: return 'border-l-4 border-l-emerald-500';
+      case 'critical': return 'border-l-4 border-l-red-600 bg-red-50/40 dark:bg-red-950/10';
+      case 'high': return 'border-l-4 border-l-amber-500 bg-amber-50/40 dark:bg-amber-950/10';
+      case 'medium': return 'border-l-4 border-l-amber-400 bg-amber-50/30 dark:bg-amber-950/10';
+      default: return 'border-l-4 border-l-emerald-500 bg-emerald-50/30 dark:bg-emerald-950/10';
     }
   };
 
