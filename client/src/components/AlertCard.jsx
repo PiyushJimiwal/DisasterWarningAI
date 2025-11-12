@@ -6,10 +6,10 @@ import { Badge } from '@/components/ui/badge';
 export default function AlertCard({ alert }) {
   const getBorderColor = () => {
     switch (alert.severity) {
-      case 'critical': return 'border-l-4 border-l-risk-critical';
-      case 'high': return 'border-l-4 border-l-risk-high';
-      case 'medium': return 'border-l-4 border-l-risk-medium';
-      default: return 'border-l-4 border-l-risk-low';
+      case 'critical': return 'border-l-4 border-l-red-500 bg-gradient-to-r from-red-50 to-white';
+      case 'high': return 'border-l-4 border-l-orange-500 bg-gradient-to-r from-orange-50 to-white';
+      case 'medium': return 'border-l-4 border-l-yellow-500 bg-gradient-to-r from-yellow-50 to-white';
+      default: return 'border-l-4 border-l-green-500 bg-gradient-to-r from-green-50 to-white';
     }
   };
 

@@ -162,10 +162,10 @@ export default function Dashboard() {
           </TabsList>
 
           <TabsContent value="dashboard" className="space-y-6">
-            <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
+            <Card className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 border-2 border-blue-200 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl">Current Risk Assessment</CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-bold">Current Risk Assessment</CardTitle>
+                <p className="text-sm text-gray-600 font-medium">
                   Real-time AI predictions for Uttarakhand region
                 </p>
               </CardHeader>

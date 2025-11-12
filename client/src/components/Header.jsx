@@ -21,7 +21,7 @@ export default function Header({ onMenuClick }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background" data-testid="header">
+    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg" data-testid="header">
       <div className="flex h-16 items-center justify-between gap-4 px-4">
         <div className="flex items-center gap-3">
           <Button 
@@ -29,14 +29,15 @@ export default function Header({ onMenuClick }) {
             size="icon" 
             onClick={onMenuClick}
             data-testid="button-menu"
+            className="text-white hover:bg-white/20"
           >
             <Menu className="w-5 h-5" />
           </Button>
           <div>
-            <h1 className="text-lg font-semibold" data-testid="text-title">
+            <h1 className="text-lg font-bold" data-testid="text-title">
               Uttarakhand Disaster Alert
             </h1>
-            <p className="text-xs text-muted-foreground" data-testid="text-subtitle">
+            <p className="text-xs opacity-90" data-testid="text-subtitle">
               AI Early Warning System
             </p>
           </div>
@@ -46,14 +47,13 @@ export default function Header({ onMenuClick }) {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="relative"
+            className="relative text-white hover:bg-white/20"
             onClick={() => console.log('Notifications clicked')}
             data-testid="button-notifications"
           >
             <Bell className="w-5 h-5" />
             <Badge 
-              variant="destructive" 
-              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-yellow-400 text-black font-bold border-2 border-white"
               data-testid="badge-notification-count"
             >
               3
@@ -63,7 +63,7 @@ export default function Header({ onMenuClick }) {
           <Button 
             variant="outline" 
             size="sm" 
-            className="gap-1"
+            className="gap-1 bg-white/20 border-white/30 text-white hover:bg-white/30"
             onClick={toggleLanguage}
             data-testid="button-language"
           >
@@ -76,6 +76,7 @@ export default function Header({ onMenuClick }) {
             size="icon"
             onClick={toggleTheme}
             data-testid="button-theme"
+            className="text-white hover:bg-white/20"
           >
             {theme === 'light' ? (
               <Moon className="w-5 h-5" />
