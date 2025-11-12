@@ -161,16 +161,16 @@ export default function Dashboard() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="dashboard" className="space-y-6">
-            <Card className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 border-2 border-blue-200 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-bold">Current Risk Assessment</CardTitle>
-                <p className="text-sm text-gray-600 font-medium">
+          <TabsContent value="dashboard" className="space-y-5">
+            <Card className="border-t-4 border-t-blue-600">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl font-bold text-foreground">Current Risk Assessment</CardTitle>
+                <p className="text-sm text-muted-foreground">
                   Real-time AI predictions for Uttarakhand region
                 </p>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap justify-center gap-8 py-4">
+              <CardContent className="pb-5">
+                <div className="grid grid-cols-2 gap-6">
                   <RiskIndicator percentage={overallRisk.flood} label="Flood Risk" />
                   <RiskIndicator percentage={overallRisk.landslide} label="Landslide Risk" />
                 </div>
@@ -178,15 +178,15 @@ export default function Dashboard() {
             </Card>
 
             <div>
-              <h2 className="text-xl font-semibold mb-4">Active Alerts</h2>
-              <div className="grid gap-4 lg:grid-cols-2">
+              <h2 className="text-lg font-semibold mb-3">Active Alerts</h2>
+              <div className="grid gap-3 lg:grid-cols-2">
                 {alerts.slice(0, 2).map(alert => (
                   <AlertCard key={alert.id} alert={alert} />
                 ))}
               </div>
               <Button 
                 variant="outline" 
-                className="w-full mt-4"
+                className="w-full mt-3"
                 onClick={() => setActiveTab('alerts')}
                 data-testid="button-view-all-alerts"
               >
@@ -195,8 +195,8 @@ export default function Dashboard() {
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold mb-4">District-wise Risk Map</h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <h2 className="text-lg font-semibold mb-3">District-wise Risk Map</h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {districts.map(district => (
                   <DistrictCard key={district.id} district={district} />
                 ))}
@@ -206,8 +206,8 @@ export default function Dashboard() {
 
           <TabsContent value="alerts" className="space-y-4">
             <div>
-              <h2 className="text-2xl font-semibold mb-4">All Active Alerts</h2>
-              <div className="grid gap-4 lg:grid-cols-2">
+              <h2 className="text-xl font-semibold mb-3">All Active Alerts</h2>
+              <div className="grid gap-3 lg:grid-cols-2">
                 {alerts.map(alert => (
                   <AlertCard key={alert.id} alert={alert} />
                 ))}
@@ -215,11 +215,11 @@ export default function Dashboard() {
             </div>
           </TabsContent>
 
-          <TabsContent value="routes" className="space-y-6">
+          <TabsContent value="routes" className="space-y-5">
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-primary" />
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg font-bold">
+                  <MapPin className="w-5 h-5 text-blue-600" />
                   Char Dham Yatra Route Safety
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">
@@ -228,7 +228,7 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <ScrollArea className="w-full">
-                  <div className="flex gap-4 pb-4">
+                  <div className="flex gap-3 pb-4">
                     {routes.map(route => (
                       <PilgrimageRouteCard key={route.id} route={route} />
                     ))}
@@ -239,8 +239,8 @@ export default function Dashboard() {
             </Card>
 
             <div>
-              <h2 className="text-xl font-semibold mb-4">Route-specific Districts</h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <h2 className="text-lg font-semibold mb-3">Route-specific Districts</h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {districts.filter(d => ['Chamoli', 'Rudraprayag', 'Uttarkashi'].includes(d.name)).map(district => (
                   <DistrictCard key={district.id} district={district} />
                 ))}
@@ -248,31 +248,31 @@ export default function Dashboard() {
             </div>
           </TabsContent>
 
-          <TabsContent value="report" className="space-y-6">
-            <div className="grid gap-6 lg:grid-cols-2">
+          <TabsContent value="report" className="space-y-5">
+            <div className="grid gap-5 lg:grid-cols-2">
               <CommunityReportForm />
               
               <Card>
-                <CardHeader>
-                  <CardTitle>Recent Community Reports</CardTitle>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg font-bold">Recent Community Reports</CardTitle>
                   <p className="text-sm text-muted-foreground">
                     Latest reports from local communities
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {reports.slice(0, 5).map((report) => {
                       const getBorderColor = () => {
-                        if (report.type === 'landslide' || report.type === 'flood') return 'border-l-risk-high';
-                        if (report.type === 'crack' || report.type === 'water') return 'border-l-risk-medium';
-                        return 'border-l-risk-low';
+                        if (report.type === 'landslide' || report.type === 'flood') return 'border-l-red-600';
+                        if (report.type === 'crack' || report.type === 'water') return 'border-l-amber-500';
+                        return 'border-l-emerald-500';
                       };
                       
                       return (
-                        <div key={report.id} className={`border-l-4 ${getBorderColor()} pl-4 py-2`}>
-                          <p className="font-semibold text-sm capitalize">{report.type.replace('_', ' ')}</p>
-                          <p className="text-xs text-muted-foreground">{report.location} • {report.timeAgo}</p>
-                          <p className="text-sm mt-1">{report.description}</p>
+                        <div key={report.id} className={`border-l-4 ${getBorderColor()} pl-3 py-2`}>
+                          <p className="font-semibold text-sm capitalize leading-tight">{report.type.replace('_', ' ')}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{report.location} • {report.timeAgo}</p>
+                          <p className="text-sm mt-1.5 leading-snug">{report.description}</p>
                         </div>
                       );
                     })}

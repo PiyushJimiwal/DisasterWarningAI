@@ -37,9 +37,9 @@ export default function CommunityReportForm() {
 
   return (
     <Card data-testid="card-community-report">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 text-primary" />
+      <CardHeader className="pb-3">
+        <CardTitle className="flex items-center gap-2 text-lg font-bold">
+          <AlertCircle className="w-5 h-5 text-blue-600" />
           Report Early Warning Signs
         </CardTitle>
         <p className="text-sm text-muted-foreground">
@@ -48,7 +48,7 @@ export default function CommunityReportForm() {
       </CardHeader>
       <CardContent>
         {submitted ? (
-          <div className="text-center py-8 text-risk-low" data-testid="text-success">
+          <div className="text-center py-8 text-emerald-500" data-testid="text-success">
             <AlertCircle className="w-12 h-12 mx-auto mb-3" />
             <p className="font-semibold">Report Submitted Successfully!</p>
             <p className="text-sm text-muted-foreground mt-1">Thank you for keeping our community safe.</p>

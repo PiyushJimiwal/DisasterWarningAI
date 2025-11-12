@@ -21,8 +21,8 @@ export default function Header({ onMenuClick }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg" data-testid="header">
-      <div className="flex h-16 items-center justify-between gap-4 px-4">
+    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md" data-testid="header">
+      <div className="flex h-14 items-center justify-between gap-4 px-4">
         <div className="flex items-center gap-3">
           <Button 
             variant="ghost" 
@@ -34,7 +34,7 @@ export default function Header({ onMenuClick }) {
             <Menu className="w-5 h-5" />
           </Button>
           <div>
-            <h1 className="text-lg font-bold" data-testid="text-title">
+            <h1 className="text-base font-bold tracking-tight" data-testid="text-title">
               Uttarakhand Disaster Alert
             </h1>
             <p className="text-xs opacity-90" data-testid="text-subtitle">
@@ -53,7 +53,7 @@ export default function Header({ onMenuClick }) {
           >
             <Bell className="w-5 h-5" />
             <Badge 
-              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-yellow-400 text-black font-bold border-2 border-white"
+              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-amber-500 text-white font-bold border-2 border-blue-700"
               data-testid="badge-notification-count"
             >
               3
@@ -68,7 +68,7 @@ export default function Header({ onMenuClick }) {
             data-testid="button-language"
           >
             <Globe className="w-4 h-4" />
-            <span>{language}</span>
+            <span className="font-semibold">{language}</span>
           </Button>
           
           <Button 
