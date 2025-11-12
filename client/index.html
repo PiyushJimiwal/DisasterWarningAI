@@ -32,8 +32,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+      * {
+        cursor: none;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      
       #root {
         min-height: 100vh;
+      }
+      
+      .custom-cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #3b82f6;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.15s ease;
+        mix-blend-mode: difference;
+      }
+      
+      .cursor-dot {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: #3b82f6;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transition: transform 0.08s ease;
       }
       
       .loading-screen {
@@ -41,22 +74,95 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: #f8fafc;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
         font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .loading-screen::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        animation: float 20s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
       }
       
       .loading-content {
         text-align: center;
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 0.8s ease;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .spinner-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 24px;
       }
       
       .spinner {
-        border: 3px solid #e5e7eb;
-        border-top: 3px solid #1e40af;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        border-top: 4px solid #ffffff;
         border-radius: 50%;
-        width: 48px;
-        height: 48px;
-        animation: spin 1s linear infinite;
-        margin: 0 auto 16px;
+        animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      }
+      
+      .spinner-inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        height: 70%;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        border-top: 4px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite reverse;
+      }
+      
+      .pulse-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        animation: pulse 2s ease-out infinite;
       }
       
       @keyframes spin {
@@ -64,18 +170,137 @@
         100% { transform: rotate(360deg); }
       }
       
-      .loading-text {
-        color: #64748b;
-        font-size: 14px;
+      @keyframes pulse {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
       }
+      
+      .loading-text {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        animation: textGlow 2s ease-in-out infinite;
+      }
+      
+      @keyframes textGlow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+      
+      .loading-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        margin-top: 8px;
+        font-weight: 300;
+      }
+      
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: particleFloat linear infinite;
+      }
+      
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+      
+      .particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; width: 4px; height: 4px; }
+      .particle:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; width: 6px; height: 6px; }
+      .particle:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; width: 3px; height: 3px; }
+      .particle:nth-child(4) { left: 40%; animation-duration: 14s; animation-delay: 1s; width: 5px; height: 5px; }
+      .particle:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 3s; width: 4px; height: 4px; }
+      .particle:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 5s; width: 6px; height: 6px; }
+      .particle:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2s; width: 3px; height: 3px; }
+      .particle:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 4s; width: 5px; height: 5px; }
+      .particle:nth-child(9) { left: 90%; animation-duration: 12s; animation-delay: 1s; width: 4px; height: 4px; }
     </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cursor = document.createElement('div');
+        const cursorDot = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursorDot.className = 'cursor-dot';
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorDot);
+        
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+        
+        function animateCursor() {
+          cursorX += (mouseX - cursorX) * 0.1;
+          cursorY += (mouseY - cursorY) * 0.1;
+          dotX += (mouseX - dotX) * 0.15;
+          dotY += (mouseY - dotY) * 0.15;
+          
+          cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+          cursorDot.style.transform = `translate(${dotX - 3}px, ${dotY - 3}px)`;
+          
+          requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+      });
+    </script>
   </head>
   <body>
     <div id="root">
       <div class="loading-screen">
+        <div class="particles">
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+        </div>
         <div class="loading-content">
-          <div class="spinner"></div>
-          <p class="loading-text">Loading disaster monitoring system...</p>
+          <div class="spinner-container">
+            <div class="pulse-ring"></div>
+            <div class="spinner"></div>
+            <div class="spinner-inner"></div>
+          </div>
+          <p class="loading-text">Loading Disaster Monitoring System</p>
+          <p class="loading-subtitle">Initializing AI predictions...</p>
         </div>
       </div>
     </div>
